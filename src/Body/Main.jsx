@@ -8,11 +8,22 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import { useStateValue } from "../stateProvider";
+import{ db} from "../firebase";
+import { collection, doc, getDoc,updateDoc,setDoc ,update } from "firebase/firestore"; 
 export default function Main(){
-
+    const [{user},dispatch]=useStateValue();
     useEffect(()=>{
         AOS.init({duration:5000});
+       if(user){
+        getDoc(doc(db, "users",user.email)).then(docSnap => {
+            if (docSnap.exists()) {
+                console.log("hurray user");
+            } else {
+              
+            }
+          })
+       }
     },[])
 
     function Box(props){

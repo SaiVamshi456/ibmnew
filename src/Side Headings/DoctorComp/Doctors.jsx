@@ -20,7 +20,7 @@ function Doctor() {
     
   }
   function Card(props) {
-    console.log(props.rating);
+    
     return (
       <div className="card">
         <p type="text" id="my-city" Style="display:none;">
@@ -31,15 +31,13 @@ function Doctor() {
           {props.specialization}
         </p>
         <p>{props.location}</p>
-        <Link to="/finddoctor/appoint">
-          <button>Book a appointment</button>
-        </Link>
+       
 
-        {/* <Link to={user && "/finddoctor/doctorpage"}>
+         <Link to={user && "/finddoctor/appoint"}>
            <button onClick={() => handleAppointment(props.ids)}>
            {user? "book a appointment":"Login to book appointemnt "}
           </button>
-        </Link> */}
+        </Link> 
       </div>
     );
   }

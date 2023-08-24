@@ -1,14 +1,31 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import list from "./doctorList";
+import { useStateValue } from "../../stateProvider";
 import "./Appoint.css";
+import { collection, doc, getDoc, setDoc, updateDoc} from "firebase/firestore"; 
+import{ db} from "../../firebase";
+import emailjs from "@emailjs/browser";
 export default function Appointment(){
-    const [startTime, setStart] = useState(9);
-    const [endTime, setEnd] = useState(16);
+    const [{ doctor,user }, dispatch] = useStateValue();
+    const [startTime, setStart] = useState(doctor.startTime);
+    const [endTime, setEnd] = useState(doctor.endTime);
     const [slot, setSlot] = useState([]);
     const [titles,setTitles] = useState("Slot Avaliable");
-    
+    const [loading, setLoading] = useState(false);
+   const [datab,udatab]=useState([]);
+   const today = new Date() // get today's date
+   const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
     async function setSlots(i) {
+        getDoc(doc(db, "doctors",doctor.id)).then(docSnap => {
+            if (docSnap.exists()) {
+                setStart(docSnap.data().startTime);
+                setEnd(docSnap.data().endTime);
+            } else {
+              console.log("No such document!");
+            }
+          })
         return new Promise((resolve, reject) => {
         setSlot((prev) => {
             return [...prev, i];
@@ -22,26 +39,96 @@ export default function Appointment(){
         });
     }
     useEffect(() => {
+        emailjs.init("iuFtzLVK3q6_61olU")
+        getDoc(doc(db, "doctors",doctor.id)).then(docSnap => {
+            if (docSnap.exists()) {
+                const a=[];
+                a.push(docSnap.data().slots.slot1);
+                a.push(docSnap.data().slots.slot2);
+                a.push(docSnap.data().slots.slot3);
+                a.push(docSnap.data().slots.slot4);
+                a.push(docSnap.data().slots.slot5);
+                a.push(docSnap.data().slots.slot6);
+                a.push(docSnap.data().slots.slot7);
+                a.push(docSnap.data().slots.slot8);
+                udatab(a);
+                
+            } else {
+              console.log("No such document!");
+            }
+          })
+        
+        console.log(datab[1]);
         setSlot([]);
         addSlot();
+        
     }, []);
 
     function addSlot() {
+       
         let i = 0;
+        console.log(startTime+" "+endTime);
         for (i = startTime; i < endTime; i++) {
             console.log(i, i + 1);
             setSlots(i);
+            
         }
+       
     }
     
-    function handleSlots(event)
+    const handleSlots  = async (event) =>
     {
-        if(event.currentTarget.style.backgroundColor==="green"){        
+        console.log(event);
+        event.preventDefault();
+        var datax = event.currentTarget.getAttribute('data');
+        var slotTime = event.currentTarget.getAttribute('time');
+         // Add 1 to today's date and set it to tomorrow
+          //console.log("Tomorrow is", tomorrow.toDateString())
+        console.log(datax);
+       datab[datax]=1;
+       udatab(datab);
+       console.log(datab+"here bkvgw");
+        if(event.currentTarget.style.backgroundColor="green"){   
             event.currentTarget.style.backgroundColor="red";
             event.currentTarget.style.boxShadow="red";
             event.currentTarget.style.border= "1px solid darkred";
             setTitles("No Slot Avaliable");
-        }
+            const DocRef = doc(db, "doctors",doctor.id);
+            await updateDoc(DocRef, {
+              
+              "slots.slot1":datab[0],
+              "slots.slot2":datab[1],
+              "slots.slot3":datab[2],
+              "slots.slot4":datab[3],
+              "slots.slot5":datab[4],
+              "slots.slot6":datab[5],
+              "slots.slot7":datab[6],
+              "slots.slot8":datab[7],
+              
+                
+            });
+           
+            const serviceId = "service_y9h5hak.";
+             const templateId = "template_2ahhf3g";
+           try {
+            
+                await emailjs.send(serviceId, templateId, {
+                  name: user.email,
+                  doctorName:doctor.name,
+
+                  t1:slotTime,
+                  t2:(slotTime+1),
+                  day:tomorrow.toDateString(),
+                 recipient: user.email
+             });
+             alert("slot booked sucessfully");
+           } catch (error) {
+             console.log(error);
+           } finally {
+          
+           }
+           
+      }
         else{
             event.currentTarget.style.backgroundColor="green";
             event.currentTarget.style.boxShadow="green";
@@ -63,11 +150,11 @@ export default function Appointment(){
                     </div>
                     <div class="text">
                         <p>
-                        <b>Dr. Meera</b>
+                        <b>{doctor.name}</b>
                         </p>
                         <p>MBBS</p>
-                        <p>General Physician</p>
-                        <p>5 years Experience </p>
+                        <p>{doctor.specialization}</p>
+                        <p>{doctor.expe} years Experience </p>
                         <p>Medical Registration Verified</p>
                     </div>
                 </div>
@@ -75,11 +162,7 @@ export default function Appointment(){
             <div class="info">
                 <h3>ABOUT</h3>
                 <p>
-                Dr. Meera is a General Physician and Family Physician in Kurnool
-                Medicalcollege, Kurnool and has an experience of 7 years in these
-                fields. Dr. Meera practices at Tirumala Clinic in Kurnool
-                Medicalcollege, Kurnool. She completed MBBS from Dr. NTR University of
-                Health Sciences Andhra Pradesh in 2016.
+                {doctor.about}
                 </p>
             </div>
             <div class="info1">
@@ -91,9 +174,9 @@ export default function Appointment(){
                     <th>Fee</th>
                     </tr>
                     <tr>
-                    <td>ABC , Near Gandhi Road, Kurnool.</td>
+                    <td>{doctor.address}</td>
                     <td>
-                        {startTime}:00 - {endTime}:00 
+                        {doctor.startTime}:00 - {doctor.endTime}:00 
                     </td>
                     <td>₹500</td>
                     </tr>
@@ -102,19 +185,34 @@ export default function Appointment(){
             </div>
             <div class="book">
                 HealthConnect: Streamlined Doctors Appointment and Health Record
-                Manageme
-                <h2>Book Your Slot</h2>
+                Management
+                <h2>Book Your Slot for :   <p>{tomorrow.toDateString()}</p> </h2>
             </div>
             <div class="btn">
                 {slot.length > 0 ? (
-                slot.map((ele, idx) => {
-                    return (
-                        <div  className="slots"  key={idx}>
-                            <span title={titles} className="bookings" onClick={handleSlots}>
-                                {ele} - {ele + 1}
-                            </span>
-                        </div>
-                    );
+                    
+                slot.map((ele, idx) => {   
+                    if(datab[idx]===0){
+                        return (
+                            <div  className="slots"  key={idx}>
+                                <button style ={{backgroundColor:"green"}} title={titles} time={ele} data={idx} className="bookings" onClick={handleSlots}>
+                                    {ele} - {ele + 1}
+                                </button>
+                            </div>
+                        );
+                    }
+                    else{
+                        return (
+                            <div  className="slots"  key={idx}>
+                                <button style={{backgroundColor: "red"}} title={titles} value={idx} className="bookings"  >
+                                    {ele} - {ele + 1}
+                                </button>
+                            </div>
+                        );
+
+                    }
+                    
+                   
                 })
                 ) : (
                 <div>No slots available</div>

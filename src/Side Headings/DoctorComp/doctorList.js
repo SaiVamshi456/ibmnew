@@ -1,13 +1,24 @@
 const docs = [
     {
       "id":"1",
-      "name": "abc",
+      "name": "Shankar Dada MBBS",
       "location": "kurnool",
       "rating": "4",
       "specialization": "cardiaogy",
       "about":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh tellus molestie nunc non blandit massa. Dolor sit amet consectetur adipiscing elit pellentesque habitant. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor.",
-      "startTime":"9",
-      "endTime":"12"
+      "startTime":9,
+      "endTime":12,
+      "address":"Appolo hospitals,gandhi nagar",
+      "expe":"5",
+       "slot1":"9-10",
+       "slot2":"10-11",
+       "slot3":"11-12",
+       "slot4":"12-13",
+       "slot5":"15-16",
+       "slot6":"16-17",
+       "slot7":"17-18",
+       "slot8":"19-20",
+
       
     },
     {
@@ -18,7 +29,9 @@ const docs = [
       "rating": "5",
       "about":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh tellus molestie nunc non blandit massa. Dolor sit amet consectetur adipiscing elit pellentesque habitant. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor.",
       "startTime":"3",
-      "endTime":"7"
+      "endTime":"7",
+      "address":"Appolo hospitals,gandhi nagar",
+      "expe":"5",
     },
     {
       "id":"3",
@@ -28,7 +41,9 @@ const docs = [
       "rating": "3",
       "about":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh tellus molestie nunc non blandit massa. Dolor sit amet consectetur adipiscing elit pellentesque habitant. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor.",
       "startTime":"2",
-      "endTime":"5"
+      "endTime":"5",
+      "address":"Appolo hospitals,gandhi nagar",
+      "expe":"5",
     },
     {
       "id":"4",
@@ -38,7 +53,9 @@ const docs = [
       "specialization": "cardiaogy",
       "about":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh tellus molestie nunc non blandit massa. Dolor sit amet consectetur adipiscing elit pellentesque habitant. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor.",
       "startTime":"9",
-      "endTime":"12"
+      "endTime":"12",
+      "address":"Appolo hospitals,gandhi nagar",
+      "expe":"5",
       
     },
     {
@@ -49,7 +66,9 @@ const docs = [
       "rating": "5",
       "about":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh tellus molestie nunc non blandit massa. Dolor sit amet consectetur adipiscing elit pellentesque habitant. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor.",
       "startTime":"3",
-      "endTime":"7"
+      "endTime":"7",
+      "address":"Appolo hospitals,gandhi nagar",
+      "expe":"5",
     },
     {
       "id":"6",
@@ -59,7 +78,9 @@ const docs = [
       "rating": "3",
       "about":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh tellus molestie nunc non blandit massa. Dolor sit amet consectetur adipiscing elit pellentesque habitant. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor.",
       "startTime":"2",
-      "endTime":"5"
+      "endTime":"5",
+      "address":"Appolo hospitals,gandhi nagar",
+      "expe":"5",
     }
     
   ];
