@@ -10,6 +10,7 @@ import {
 } from "firebase/storage";
 import { useStateValue } from "./stateProvider";
 import { saveAs } from 'file-saver'
+import { WrapText } from "@mui/icons-material";
 export default function User() {
   const [imgUrl, setImgUrl] = useState(null);
   const [progresspercent, setProgresspercent] = useState(0);
@@ -84,15 +85,14 @@ export default function User() {
           </div>
         </div>
       )}
-
-      {files.map((val) => {
-        return (
-          <div className="user-card">
-            <img src={val} className="user-img" alt="hcqKUH" />
-            <button value={val} onClick={handleDownload}>Download</button>
-          </div>
-        );
-      })}
+        {files.map((val) => {
+          return (
+            <div className="user-card">
+              <img src={val} className="user-img" alt="hcqKUH" />
+              <button value={val} onClick={handleDownload} download>Download</button>
+            </div>
+          );
+        })}
     </div>
   );
 }

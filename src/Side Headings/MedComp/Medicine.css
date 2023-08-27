@@ -21,7 +21,7 @@
     font-family: 'Times New Roman', Times, serif;
     width: 100%;
     background-color: rgb(120, 156, 231);
-    height: 100%;
+    margin-bottom: 20vh;
 }
 .div-bottom{
     align-items: center;

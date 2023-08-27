@@ -17,16 +17,21 @@ export default function Footer(){
         <footer className="foot" data-aos="fade-down">
             <div className="foot-top">
                 <div className="foot-left">
-                    <div className="img">
+                    <div className="social-media">
+                        <a></a>
+                        <h3></h3>
+                    </div>
+                    <div className="social-media">
                         <a href="" target="_blank">
                            <InstagramIcon sx={{
                             color: "white",
                               fontSize: "40px",
-                                "&:hover": { color: "blue"},
+                              "&:hover": { color: "blue"},
                         }}/>
                         </a>
+                        <h3>Instagram</h3>
                     </div>
-                    <div className="img">
+                    <div className="social-media" >
                         <a href="" target="_blank">                    
                             <TwitterIcon sx={{
                                 color: "white",
@@ -34,8 +39,9 @@ export default function Footer(){
                                     "&:hover": { color: "blue"},
                             }}/>
                         </a>
+                        <h3>Twitter</h3>
                     </div>
-                    <div className="img">
+                    <div className="social-media" >
                         <a href="" target="_blank">                    
                             <FacebookIcon sx={{
                                 color: "white",
@@ -43,11 +49,7 @@ export default function Footer(){
                                     "&:hover": { color: "blue"},
                             }}/>
                         </a>
-                    </div>
-                    <div className="img">
-                        <a href="" target="_blank">                    
-                           
-                        </a>
+                        <h3>Facebook</h3>
                     </div>
                 </div>
                 <div className="foot-right">

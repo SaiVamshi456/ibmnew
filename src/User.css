@@ -38,9 +38,34 @@
     object-fit: contain;
   }
   .user-card {
-    width: 600px;
+    display: flex;
+    flex-direction: row-reverse;
     border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
+    align-items:center;
+    justify-content: center;
+    position: relative;
+    width: fit-content;
+    cursor: pointer;
+  }
+  .user-card button{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+    opacity: 65%;
+  }
+  .user-card button{
+    display: none;
+  }
+  .user-card:hover img{
+    opacity: 75%;
+  }
+  .user-card:hover button{
+    display: inline;
+  }
+  .user-card button{
+    position: absolute;
   }
   

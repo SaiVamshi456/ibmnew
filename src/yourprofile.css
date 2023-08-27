@@ -1,0 +1,27 @@
+.pro{
+    display: flex;
+}
+.mennu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    width: fit-content;
+    margin-top: 3%;
+    height: fit-content;
+    width: fit-content;
+}
+.mennu button{
+    padding: 30px;
+    background-color: transparent;
+    color:white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+.deta{
+    margin: 40px;
+    align-items: center;
+    justify-content: center;
+}
