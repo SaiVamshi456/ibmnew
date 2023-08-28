@@ -1,4 +1,4 @@
-import User from "./User";
+import User from "./Prescriptions";
 import "./yourprofile.css";
 import { useState } from "react";
 export default function YourProfile(){

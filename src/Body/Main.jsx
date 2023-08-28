@@ -1,9 +1,5 @@
-import doctor from "./doctor.webp";
-import aid from "./firstaid.png";
-import doc_img from "./doctorsimage.jpg";
-import medicine from "./medicine.png";
-import docimage from "./doctor.png";
-import logo from "./logo.webp";
+
+import medicine from "./medicine.jfif";
 import "./Main.css";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -12,8 +8,22 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../stateProvider";
 import{ db} from "../firebase";
 import { collection, doc, getDoc,updateDoc,setDoc ,update } from "firebase/firestore"; 
-export default function Main(){
+export default  function Main(){
     const [{user},dispatch]=useStateValue();
+    const userdata={
+        UserName:"",
+        cistole:[],
+        diastole:[],
+        weight:[],
+        glucose:[],
+        glucoseDate:[],
+        weightDate:[],
+        cystole:[],
+        diastole:[],
+        bloodpressureDate:[],
+        goals:[],
+        goalDate:[],
+    }
     useEffect(()=>{
         AOS.init({duration:5000});
        if(user){
@@ -21,7 +31,9 @@ export default function Main(){
             if (docSnap.exists()) {
                 console.log("hurray user");
             } else {
-              
+                setDoc(doc(db, "users", user.email), userdata);
+              console.log("usernot found");
+
             }
           })
        }
@@ -29,11 +41,10 @@ export default function Main(){
 
     function Box(props){
         return(
-            <div className="boxes">
-                <div className="img">
-                    <img src={props.img} alt={props.alt} />
+            <div className="boxes" data-aos='fade-down'>
+                <div className="image">
+                    <img src={props.img} alt={props.alter} />
                 </div>
-                <hr/>
                 <p>{props.name}</p>
             </div>
         )
@@ -42,62 +53,32 @@ export default function Main(){
     return (
         <div className="body-main">
             <div className="poster" data-aos="fade-up">
-                <h1>Expertise ensures a proactive<br/> approach to your health<br/>
+               
+                <h1>Expertise ensures a proactive approach to your health<br/>
                 No fear when we are here
                 </h1>
-                <img className="doc-img" src={doctor}/>
+                <img className="doc-img" src={"https://img.freepik.com/free-vector/health-professional-team_52683-36023.jpg"}/>
             </div>
             <div className="imp" data-aos="fade-down">
                 <Link to="/finddoctor">
-                    <Box img={docimage} alter="Near Doctors" name="Doctors near You" />
+                    <Box img={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZfgZ7gJLtqdC0hby93kal4lP4IIsrfJ880g&usqp=CAU"} alter="Near Doctors" name="Doctors near You" />
                 </Link>
-                <Box img={aid} alter="First Aid" name="First Aid"  />
-                <Link to="/medicine">
-                    <Box img={medicine} alter="Tablets" name="Medicines used according to issue" />    
-                </Link>
+                <Box img={"https://media.istockphoto.com/id/1215835575/vector/medicine-first-aid-kit.jpg?s=612x612&w=0&k=20&c=L-AcsFJAG2QfO5vg0qPl2_NhH9IRwYkhHUoofqpzkMI="} alter="First Aid" name="First Aid"  />
+                <Box img={medicine} alter="Tablets" name="Medicines used according to issue" />    
             </div>
-            <div style={{height:"20vh"}}></div>
-            <h1 style={{height:"10vh",textAlign:"center"}}>About US</h1>
-            <div className="about-us">
-                <div className="about-details d1">
-                    Check doctors near you Check doctors near you
-                    Check doctors near you Check doctors near you
-                    Check doctors near you Check doctors near you
-                    Check doctors near you Check doctors near you
-                    Check doctors near you Check doctors near you
-                    Check doctors near you Check doctors near you
-                    Check doctors near you Check doctors near you
-                    Check doctors near you Check doctors near you
+            <h1 className="faq">FAQs</h1>
+            <div className="slider" data-aos="fade-up">                    
+                <div className="slider-container">
+                    <p>“Went with my wife, absolutely brilliant restaurant, the food tasted beautiful, so much depth and very well presented. As good if not better than any in the city centre. Will definitely be returning.” <br/> Nathaniel Harwood – Google</p>
                 </div>
-                <div className="about-details d2">
-                    First Aid First Aid
-                    First Aid First Aid
-                    First Aid First Aid
-                    First Aid First Aid
-                    First Aid First Aid
-                    First Aid First Aid
-                    First Aid First Aid
-                    First Aid First Aid
+                <div className="slider-container">
+                    <p>“Great friendly service, the staff don't make you feel rushed, but are also very attentive, and on hand all the time if needed, best Thai food I have had in years, flavours are out of this world, and extremely good prices for the quality you get is top notch!!!!!! Love it” <br/>David Armstrong - Porter – Google</p>
                 </div>
-                <div className="about-details d3">
-                    Prescription Notification Prescription Notification
-                    Prescription Notification Prescription Notification
-                    Prescription Notification Prescription Notification
-                    Prescription Notification Prescription Notification
-                    Prescription Notification Prescription Notification
-                    Prescription Notification Prescription Notification
-                    Prescription Notification Prescription Notification
-                    Prescription Notification Prescription Notification
+                <div className="slider-container">
+                    <p>“Possibly one of the best in Manchester. A menu designed and prepared by a very skilled chef, ably assisted by his wife who provides a friendly welcome. Always consistent and of high quality.” <br/>Paul Fletcher – Google</p>
                 </div>
-                <div className="about-details d4">
-                    Medicine delivery Medicine delivery
-                    Medicine delivery Medicine delivery
-                    Medicine delivery Medicine delivery
-                    Medicine delivery Medicine delivery
-                    Medicine delivery Medicine delivery
-                    Medicine delivery Medicine delivery
-                    Medicine delivery Medicine delivery
-                    Medicine delivery Medicine delivery
+                <div className="slider-container">
+                    <p>“Food was amazing and service could not have been better...we went for a quick lunch as our office is opposite the restaurant...very quick service...I am highly recommending this restaurant to all my family and friends...” <br/>Nic Gent – Facebook Page</p>
                 </div>
             </div>
         </div>

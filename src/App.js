@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Footer from './FooterComp/Footer'
 import {onAuthStateChanged} from "firebase/auth";
 import { useStateValue } from "./stateProvider";
-import User from './User';
 import './App.css';
 import {auth} from "./firebase";
 import { useEffect } from "react";
@@ -19,6 +18,15 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Appointment from './Side Headings/DoctorComp/Appointment';
 import YourProfile from './YourProfile';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import HealthMetrics from "./HealthMetrics";
+import Profile from "./Profile";
+import Prescriptions from "./Prescriptions";
+import HealthRecords from './HealthRecords';
 function App() {
 
   useEffect(()=>{
@@ -55,6 +63,26 @@ function App() {
     }
      
    }
+
+   function MenuPopupState() {
+    return (
+      <PopupState variant="popover" popupId="demo-popup-menu">
+        {(popupState) => (
+          <React.Fragment>
+            <Button variant="contained" {...bindTrigger(popupState)}>
+              Dashboard
+            </Button>
+            <Menu {...bindMenu(popupState)}>
+               <Link to={user && '/profile'}><MenuItem onClick={popupState.close} className='menu-item'>Profile</MenuItem> </Link> 
+               <Link to={user && '/healthrecords'}><MenuItem onClick={popupState.close} className='menu-item'>Health Records</MenuItem></Link>
+               <Link to={user && '/prescriptions'}><MenuItem onClick={popupState.close} className='menu-item'>Prescriptions</MenuItem></Link>
+               <Link to={user && '/healthmetrics'}><MenuItem onClick={popupState.close} className='menu-item'>Health Metrics</MenuItem></Link>
+            </Menu>
+          </React.Fragment>
+        )}
+      </PopupState>
+    );
+  }
   function handleHeads(event){
     if(event.target.name==='menu' || event.target.name==='sideheading'){
       setSideHead(true);
@@ -125,9 +153,11 @@ function App() {
             </button>
           </Link>
           <div className='buttons'>
-            <Link to="/User">
-             <button style={{marginTop:"20px"}} >Hello {user?user.email:"guest"}</button>
-            </Link>
+         
+           
+             <h5 style={{margin:"30px"}} >Hello {user?user.email:"guest"}</h5>
+          
+            <MenuPopupState style={{height:"10px"}} />
             <Link to={!user && '/login'} >
                <button className='reg' onClick={handleAuth}>{user ? <UserDetails/>:'signIn'}</button>
             </Link>
@@ -141,19 +171,22 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-            <Route>
+          
                 <Route path="/" element ={[<Nav /> ,sideHead? <Heads/>:"", <Main />, <Footer />]}></Route>
                 <Route path="/login" element={[<Nav/>,<Login />,<Footer/>]}></Route>
-                <Route path='/heads' element={[<Nav /> ,sideHead?<Heads/>:"", <Footer/>]}></Route>
+                <Route path='/heads' element={[<Nav /> ,sideHead?<Heads/>:"",]}></Route>
                 <Route path='/treat' element={[<Nav/>,<Treat/>,<Footer/>]}></Route>
                 <Route path="/finddoctor" element={[<Nav />,<Doctors />,<Footer/>]}></Route>
                 <Route path="/finddoctor/doctorpage" element={[<Nav />,<DoctorPage />,<Footer/>]}></Route>
                 <Route path="/finddoctor/appoint" element={[<Nav/>,<Appointment/>,<Footer/>]} ></Route>
                 <Route path='/medicine' element={[<Nav/>,<Medicine/>,<Footer/>]}></Route>
                 {/* <Route path='/' element={[<Nav/>]}></Route> */}
-                <Route path='/User' element={[<Nav/>,<YourProfile/>,<Footer/>]}></Route>
-                <Route path='/appoint' element={[<Nav/>,<Footer/>]} ></Route>
-            </Route>
+              
+                <Route path='/appoint' element={[<Nav/>,<Footer/>]} > </Route>
+                <Route path="/healthrecords" element={[<Nav />,<HealthRecords />,<Footer />]}> </Route>
+                <Route path="/prescriptions" element={[<Nav />,<Prescriptions />,<Footer />]}> </Route>
+                <Route path="/healthmetrics" element={[<Nav />,<HealthMetrics/>,<Footer />]}> </Route>
+                <Route path="/profile" element={[<Nav />,<Profile />,<Footer />]}> </Route>
         </Routes>
       </Router>
     </div>

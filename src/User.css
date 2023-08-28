@@ -68,4 +68,27 @@
   .user-card button{
     position: absolute;
   }
-  
+  .graph{
+    height:400px;
+    background-color: antiquewhite;
+  }
+ 
+  .MuiTabs-scroller{
+    margin-top: 5px;
+  }
+  .goal-card{
+    border:1px solid black;
+    width:100%;
+    height:fit-content;
+    display: flex;
+    flex-direction: column;
+  }
+  .my-btn{
+    width: 20px;
+    height:20px;
+   
+  }
+  .my-btn:hover{
+    background-color: black;
+    color:white;
+  }

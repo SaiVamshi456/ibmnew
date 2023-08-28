@@ -10,7 +10,6 @@ import {
 } from "firebase/storage";
 import { useStateValue } from "./stateProvider";
 import { saveAs } from 'file-saver'
-import { WrapText } from "@mui/icons-material";
 export default function User() {
   const [imgUrl, setImgUrl] = useState(null);
   const [progresspercent, setProgresspercent] = useState(0);
@@ -38,8 +37,14 @@ export default function User() {
       .catch((error) => {
         // Uh-oh, an error occurred!
       });
-    setFiles([...new Set(files)]);
-    console.log(files);
+      let a=[];
+      console.log(files.length/2);
+      for(let i=0;i!==files.length/2;i++){
+        a.push(files[i]);
+      }
+      console.log(a);
+      setFiles(a);
+   
   }, []);
   function handleDownload(event) {
     event.preventDefault();
@@ -74,6 +79,7 @@ export default function User() {
 
   return (
     <div className="App">
+    <h3>Manage your health records,you can upload  ur health records or can download them</h3>
       <form onSubmit={handleSubmit} className="form">
         <input type="file" />
         <button type="submit">Upload</button>
@@ -85,14 +91,15 @@ export default function User() {
           </div>
         </div>
       )}
-        {files.map((val) => {
-          return (
-            <div className="user-card">
-              <img src={val} className="user-img" alt="hcqKUH" />
-              <button value={val} onClick={handleDownload} download>Download</button>
-            </div>
-          );
-        })}
+
+      {files.map((val) => {
+        return (
+          <div className="user-card">
+            <img src={val} className="user-img" alt="hcqKUH" />
+            <button value={val} onClick={handleDownload}>Download</button>
+          </div>
+        );
+      })}
     </div>
   );
 }

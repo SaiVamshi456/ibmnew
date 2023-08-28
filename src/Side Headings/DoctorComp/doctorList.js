@@ -7,7 +7,7 @@ const docs = [
       "specialization": "cardiaogy",
       "about":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh tellus molestie nunc non blandit massa. Dolor sit amet consectetur adipiscing elit pellentesque habitant. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor.",
       "startTime":9,
-      "endTime":12,
+      "endTime":17,
       "address":"Appolo hospitals,gandhi nagar",
       "expe":"5",
        "slot1":"9-10",
