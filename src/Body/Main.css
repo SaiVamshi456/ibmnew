@@ -1,72 +1,57 @@
 .imp {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 30px;
-  }
-  
-  .boxes{
-    border: 1px solid white;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    align-items: center;
-    text-align: center;
-    text-decoration: none;
-    padding: 20px;
-    border-radius: 3px;
-    width: 200px;
-    height: 220px;
-  }
-  .boxes p{
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    text-decoration-line: none;
-  }
-  .boxes .img img{
-    width: 150px;
-    height: 150px;
-  }
-  .poster {
-    width: 100%;
-    height: 80vh;
-    border: 1px solid rgb(121, 197, 241);
-    background: rgb(11, 106, 210);
-    background: linear-gradient(
-      18deg,
-      rgba(11, 106, 210, 1) 0%,
-      rgba(65, 135, 166, 1) 24%,
-      rgba(255, 255, 255, 1) 62%
-    );
-  }
-  
-  .poster {
-    display: flex;
-  }
-  .poster h1 {
-    line-height: 350%;
-    margin:50px;
-    color: black;
-    position: absolute;
-    top: 30;
-    font-family: "Pacifico", cursive;
-    font-size: 40px;
-    font-weight: 100;
-  }
-    .doc-img {
-      align-items: center;
-      border-radius: 50px;
-      margin: 30px 100px;
-      position: absolute;
-      right: 0;
-      height: 60vh;
-    }
-  .logo-poster {
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    transform: rotate(-45deg);
-    margin: 20px;
-  }
-  
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px;
+}
+
+.boxes{
+  border: 1px solid white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 3px;
+  width: 200px;
+  height: 220px;
+}
+.boxes p{
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  text-decoration-line: none;
+}
+.boxes .img img{
+  width: 150px;
+  height: 150px;
+}
+.poster {
+  width: 100%;
+  height: 80vh;
+  border: 1px solid rgb(121, 197, 241);
+  background: rgb(11, 106, 210);
+  background: linear-gradient(
+    18deg,
+    rgba(11, 106, 210, 1) 0%,
+    rgba(65, 135, 166, 1) 24%,
+    rgba(255, 255, 255, 1) 62%
+  );
+}
+
+.poster {
+  display: flex;
+  width: fit-screen;
+}
+.poster h1 {
+  line-height: 350%;
+  margin:50px;
+  color: black;
+  position: absolute;
+  top: 30;
+  font-family: "Pacifico", cursive;
+  font-size: 40px;
+  font-weight: 100;
+}
   .doc-img {
     align-items: center;
     border-radius: 50px;
@@ -75,30 +60,114 @@
     right: 0;
     height: 60vh;
   }
-  
-  @media (max-width: 900px) {
-    .imp {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .poster {
-      width: 600px;
-      justify-content: space-around;
-    }
-    .poster h1 {
-      font-size: 20px;
-      margin: 1px;
-      margin-top: 30px;
-    }
-    .doc-img {
-      width: 200px;
-      align-items: end;
-      margin-right: 30px;
-    }
+
+  .imp{
+    height: 400px;
   }
-  
-  .body-main {
+
+.doc-img {
+  align-items: center;
+  border-radius: 50px;
+  margin: 30px 100px;
+  position: absolute;
+  right: 0;
+  height: 60vh;
+}
+
+/* @media (max-width: 900px) {
+  .imp {
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
+  .poster {
+    width: 600px;
+    justify-content: space-around;
+  }
+  .poster h1 {
+    font-size: 20px;
+    margin: 1px;
+    margin-top: 30px;
+  }
+  .doc-img {
+    width: 200px;
+    align-items: end;
+    margin-right: 30px;
+  }
+} */
+
+@media (width<900px){
+  .poster{
+    width: 100%;
+    height: 300px;
+    display: flex;
+  }
+  .poster h1{
+    font-size: 30px;
+    line-height: 150%;
+  }
+  .doc-img{
+    width: 200px;
+    height: 200px;
+  }
+  .boxes{
+    margin: 5px;
+  }
+  .imp{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: -200px;
+  }
+  .about-us{
+    margin-bottom: -100px;
+  }
+}
+
+@media (width<1500px){
+  .poster{
+    height: 600px;
+  }
+  .poster h1{
+    font-size: 35px;
+  }
+  .doc-img{
+    width: 500px;
+    height: 500px;
+  }
+  .imp{
+    margin-bottom: -200px;
+  }
+}
+
+@media (width<=420px){
+  .poster{
+    width: fit-screen;
+    height: 200px;
+    display: flex;
+  }
+  .poster h1{
+    font-size: 14px;
+    line-height: 200%;
+  }
+  .doc-img{
+    width: 150px;
+    height: 150px;
+  }
+  .imp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .boxes{
+    margin: 20px 0px;
+  }
+}
+
+.body-main {
+  align-items: center;
+  margin-top: 2%;
+  width: fit-screen;
+}
 

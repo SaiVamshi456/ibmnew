@@ -12,22 +12,27 @@
     height: 20vh;
     text-align: center;
     line-height: 3.5pc;
-    background-color: rgb(120, 156, 231);
+    background: radial-gradient(white,rgb(172, 172, 199),rgb(102, 102, 206),rgb(48, 48, 224),blue);
     color: white;
+    padding: 20px;
+    border-radius: 50px;
+    margin: 20px;
 }
 .med{
+    align-items: center;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     font-family: 'Times New Roman', Times, serif;
     width: 100%;
-    background-color: rgb(120, 156, 231);
     margin-bottom: 20vh;
+    justify-content: space-between;
 }
 .div-bottom{
     align-items: center;
     text-align: center;
-    background-color: rgb(70, 70, 252);
-    height: 90vh;
+    background: linear-gradient(18deg,blue 4%,rgb(48, 48, 224),rgb(172, 172, 199),rgb(102, 102, 206),white);
+    height: 300px;
     width: 1333px;
     margin-bottom: -660px;
 }

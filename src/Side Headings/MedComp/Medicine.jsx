@@ -1,16 +1,27 @@
 import { useState } from "react";
+import datas from "./MedData";
 import "./Medicine.css";
 export default function Medicine(){
 
     const [inp,setInp] = useState("");
-    const [det,setDetails] = useState("");
+    const [det,setDetails] = useState("Enter the Disease you are suffering from and get relief with the suggestions given");
+
+    const dis= ["fever","cold","cough"];
 
     function handleMed(event){
         setInp(event.target.value);
     }
 
     function handleClick(){
-        setDetails(inp);
+        var i=0;
+        for(i=0;i<datas.length;i++){
+            if(datas[i].disease===inp){
+                setDetails(datas[i].medicine);
+                setInp("");
+                return;
+            }
+        }
+        setDetails("Medicines cannot cure this Disease")
         setInp("");
     }
 
@@ -26,8 +37,7 @@ export default function Medicine(){
                     <input type="text" onChange={handleMed} placeholder="Enter the disease you are suffering from" value={inp}/>
                     <button onClick={handleClick} type="submit">Submit</button>
                 </div>
-                {det}
-                <h1>Enter the Disease you are suffering from and get relief with the suggestions given</h1>
+                <h1>{det}</h1>
             </div>
         </div>
     )

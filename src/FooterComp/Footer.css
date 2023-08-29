@@ -8,6 +8,7 @@
     margin-top: 20%;
     height: fit-content;
    overflow: auto;
+   width: fit-screen;
 }
 .foot-top{
     display: flex;
@@ -56,8 +57,20 @@
     border-radius: 50px;
 }
 
-@media (max-width:900px){
+@media (width<=420px){
+    .foot{
+        width: fit-screen;
+    }
     .foot-top{
-        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .foot-left{
+        justify-content: center;
+    }
+    .contact p{
+        margin-top: 22px;
     }
 }

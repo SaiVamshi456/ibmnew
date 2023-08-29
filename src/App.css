@@ -1,34 +1,28 @@
 .body{
   margin: 0;
 }
-.App{
-  margin: 0;
-}
-button{
+/* button{
   border: 1px solid white;
   box-shadow: 0px 1px 3px 1px grey;
   margin: 20px 40px;
   padding: 10px 30px;
   background-color: whitesmoke;
   cursor: pointer;
-}
-.buttons{
+} */
+/* .userbar{
   display: flex;
 }
-.buttons .theme{
-  font-size: 30px;
-  margin-right: 20px;
-  margin-top: 20px;
-  cursor: pointer;
-}
+.inner-nav{
+  display: flex;
+} */
 
-.nav{
+/* .nav{
   margin: -5px -5px;
   box-shadow: 0px 0px 4px 3px rgb(216, 226, 235);
   height: 80px;
   position:sticky;
-}
-.sidenav{
+} */
+/* .sidenav{
   width: fit-content;
   z-index: 1;
   position: fixed;
@@ -38,7 +32,7 @@ button{
   box-shadow: 0px 1px 5px 5px rgba(135, 178, 226, 0.897);
   align-items: center;
   text-align: center;
-}
+} */
 .menu{
   border: 1px solid black;
   padding: 10px;
@@ -122,6 +116,11 @@ button{
 
 .menu-item{
   text-decoration: none;
+  padding:20px;
+  background-color: white;
+  box-shadow: 1px 1px 10px grey;
+  margin: 50px;
+
 }
 Link{
   text-decoration: none;
