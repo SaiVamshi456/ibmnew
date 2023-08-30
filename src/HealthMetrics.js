@@ -28,9 +28,9 @@ export default function HealthMetrics() {
           </TabList>
         </Box>
         <TabPanel value="1"><Bloodpres/></TabPanel>
-        <TabPanel value="2"><Weight /></TabPanel>
-        <TabPanel value="3"><Glucose/></TabPanel>
-        <TabPanel value="4"><Goals /></TabPanel>
+        <TabPanel value="2"><Weight/></TabPanel>
+        <TabPanel value="3"><Glucose /></TabPanel>
+        <TabPanel value="4"><Goals  /></TabPanel>
       </TabContext>
     </Box>
   );

@@ -73,7 +73,7 @@ export default  function Weight(){
 
  }
  return(
-   <div>
+   <div style={{width:"80%",justifyContent:"center",alignItems:"center",textAlign:"center",margin:"0px auto"}}>
        <label >Update your latest Weight</label>
        <input type="number" value={weight1} onChange={handleWeight}/>
        <button onClick={addnewWeight}>Add new weight</button>

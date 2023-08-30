@@ -1,11 +1,11 @@
 
 .foot{
-    background-color: rgb(59, 57, 57);
+    background-color:#040D12;
+    /* background:linear-gradient(18deg,#E6FFFD,#AEE2FF,#ACBCFF,#B799FF); */
     display: flex;
     flex-direction: column;
     padding: 20px;
     color: white;
-    margin-top: 20%;
     height: fit-content;
    overflow: auto;
    width: fit-screen;

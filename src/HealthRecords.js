@@ -1,4 +1,4 @@
-import "./User.css";
+import "./User.css"
 import { useState, useEffect } from "react";
 import { storage } from "./firebase";
 import {
@@ -9,36 +9,29 @@ import {
   list,
 } from "firebase/storage";
 import { useStateValue } from "./stateProvider";
+import { doc, updateDoc, arrayUnion,arrayRemove,getDoc  } from "firebase/firestore";
+import {db} from "./firebase.js";
 import { saveAs } from 'file-saver'
 export default function HealthRecords() {
   const [imgUrl, setImgUrl] = useState(null);
   const [progresspercent, setProgresspercent] = useState(0);
   const [{ user }, dispatch] = useStateValue();
   const [files, setFiles] = useState([]);
+  const [comment,setComment]=useState();
 
   useEffect(() => {
-    const listRef = ref(storage, `${user.email}2/`);
-
-    list(listRef)
-      .then((res) => {
-        res.items.forEach((itemRef) => {
-          // All the items under listRef.
-          getDownloadURL(ref(storage, itemRef))
-            .then((url) => {
-              setFiles((prev) => [...prev, url]);
-
-              // Or inserted into an <img> element
-            })
-            .catch((error) => {
-              // Handle any errors
-            });
-        });
-      })
-      .catch((error) => {
-        // Uh-oh, an error occurred!
-      });
+    getDoc(doc(db, "users", user.email)).then(docSnap => {
+      if (docSnap.exists()) {
+        console.log("Document data:",);
+        console.log(docSnap.data());
+        const k=docSnap.data().healthdoc;
+        
+          setFiles(k);
+      }
+      
+    })
    
-  }, []);
+  }, );
   function handleDownload(event) {
     event.preventDefault();
     saveAs( event.target.value,'image_url'); 
@@ -65,16 +58,29 @@ export default function HealthRecords() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImgUrl(downloadURL);
+          const Ref = doc(db, "users", user.email);
+            const newup={
+              url:downloadURL,
+              date:new Date().toLocaleString(), 
+              comm:comment
+            }
+           updateDoc(Ref, {
+            healthdoc: arrayUnion(newup)|| null,
+          
+          });
         });
       }
     );
   };
 
   return (
-    <div className="App">
+    <div  >
     <h3>Manage your health records,you can upload  ur health records or can download them</h3>
       <form onSubmit={handleSubmit} className="form">
         <input type="file" />
+        
+        <label>Add a comment</label>
+        <textarea value={comment}  onChange={e=>setComment(e.target.value)}  />
         <button type="submit">Upload</button>
       </form>
       {!imgUrl && (
@@ -88,8 +94,10 @@ export default function HealthRecords() {
       {files.map((val) => {
         return (
           <div className="user-card">
-            <img src={val} className="user-img" alt="hcqKUH" />
+            <img src={val.url} className="user-img" alt="hcqKUH" />
             <button value={val} onClick={handleDownload}>Download</button>
+            <p> updated on: {val.date}</p>
+            <p>{val.comm}</p>
           </div>
         );
       })}

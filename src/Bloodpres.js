@@ -1,4 +1,4 @@
-import "./User.css";
+import "./blood.css";
 import { useState, useEffect } from "react";
 import { useStateValue } from "./stateProvider";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
@@ -88,7 +88,7 @@ export default  function Bloodpres(){
 
  }
  return(
-   <div>
+   <div style={{width:"80%",justifyContent:"center",alignItems:"center",textAlign:"center",margin:"0px auto"}}>
        <label >Update the Cystole</label>
        <input type="number" value={cystole} onChange={e=>setcystole(e.target.value)}/>
        <label >Update your Diastole value</label>
@@ -112,6 +112,50 @@ export default  function Bloodpres(){
          }
        }}
      />
+     </div>
+     <div style={{marginTop:"2%"}}>
+<center>
+<h2>Blood Pressure Chart</h2>
+
+<table>
+<tr>
+<th>Classification</th>
+<th>Systolic Blood Pressure (SBP)</th>
+<th> </th>
+<th>Diastolic Blood Pressure (DBP)</th>
+</tr>
+<tr>
+<td class="color">LOW</td>
+<td class="col color">&lt;90</td>
+<td class="col color">or</td>
+<td class="col color">&lt;60</td>
+</tr>
+<tr>
+<td class="colora">NORMAL</td>
+<td class="col colora">&lt;120</td>
+<td class="col colora">and</td>
+<td class="col colora">&lt;80</td>
+</tr>
+<tr>
+<td class="colorb">PREHYPERTENSION</td>
+<td class="col colorb">120-139</td>
+<td class="col colorb">or</td>
+<td class="col colorb">80-89</td>
+</tr>
+<tr>
+<td class="colorc">HIGH: STAGE 1 HYPERTENSION</td>
+<td class="col colorc">140-159</td>
+<td class="col colorc">or</td>
+<td class="col colorc">90-99</td>
+</tr>
+<tr>
+<td class="colord">HIGH: STAGE 2 HYPERTENSION</td>
+<td class="col colord">>=160</td>
+<td class="col colord">or</td>
+<td class="col colord">>=100</td>
+</tr>
+</table>
+</center>
      </div>
    </div>
    

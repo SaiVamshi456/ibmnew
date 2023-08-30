@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import list from "./doctorList";
 import { useStateValue } from "../../stateProvider";
 import "./Appoint.css";
-import { collection, doc, getDoc, setDoc, updateDoc} from "firebase/firestore"; 
+import { collection, doc, getDoc, setDoc, updateDoc,arrayUnion} from "firebase/firestore"; 
 import{ db} from "../../firebase";
 import emailjs from "@emailjs/browser";
 export default function Appointment(){
@@ -13,7 +13,9 @@ export default function Appointment(){
     const [slot, setSlot] = useState([]);
     const [titles,setTitles] = useState("Slot Avaliable");
     const [loading, setLoading] = useState(false);
-   const [datab,udatab]=useState([]);
+    const [datab,udatab]=useState([]);
+    const [review,setreview]=useState("");
+    const [reviews,setreviews]=useState([]);
    const today = new Date() // get today's date
    const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
@@ -38,6 +40,21 @@ export default function Appointment(){
         }
         });
     }
+    useEffect(()=>{
+    
+        getDoc(doc(db, "doctors", doctor.id)).then(docSnap => {
+          if (docSnap.exists()) {
+            console.log("Document data:",);
+            console.log(docSnap.data());
+            const k=docSnap.data().reviews;
+            setreviews(k);
+           
+          
+          }
+          
+        })
+   
+      });
     useEffect(() => {
         emailjs.init("iuFtzLVK3q6_61olU")
         getDoc(doc(db, "doctors",doctor.id)).then(docSnap => {
@@ -136,7 +153,17 @@ export default function Appointment(){
             setTitles("Slot Avaliable");
         }
     };
-
+    function addnewreview(event){
+        event.preventDefault();
+         const Ref = doc(db, "doctors", doctor.id);
+         const goal={
+            rev:review,
+            id:user.email
+         }
+         updateDoc(Ref, {
+           reviews: arrayUnion(goal)|| null,
+        });
+    }
     return (
         <div class="main">
             <div class="conatiner">
@@ -209,15 +236,28 @@ export default function Appointment(){
                                 </button>
                             </div>
                         );
-
                     }
-                    
-                   
                 })
                 ) : (
                 <div>No slots available</div>
                 )}
+                
             </div>
+            <div className="card-wrapper">
+                    <form>
+                        <label >Write a review</label>
+                        <input rows="4" cols="50" style={{width:"60%",borderRadius:"20px"}} placeholder="Write Your Review" value={review} onChange={e=>setreview(e.target.value)}/>
+                        <button onClick={addnewreview}>submit</button>
+                    </form>
+                </div>
+                {
+                reviews.map((g,idx)=>{
+                    return( <div className="note-rev">
+                    <p style={{fontSize:"20px"}}>{g.rev}</p>
+                    <p className="th-user">{g.id}</p>
+                    </div>)
+                })
+                }
         </div>
     )
 }

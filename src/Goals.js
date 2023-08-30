@@ -1,4 +1,4 @@
-import "./User.css";
+import "./goals.css";
 import { useState, useEffect } from "react";
 import { useStateValue } from "./stateProvider";
 import { doc, updateDoc, arrayUnion,arrayRemove  } from "firebase/firestore";
@@ -39,11 +39,15 @@ export default  function Weight(){
  });
  
 
- function addnewWeight(){
+ function addnewWeight(event){
+  event.preventDefault();
    const Ref = doc(db, "users", user.email);
-   
+    const newgoal={
+      goal:goal,
+      date:new Date().toLocaleString(),
+    }
    updateDoc(Ref, {
-     goals: arrayUnion(goal)|| null,
+     goals: arrayUnion(newgoal)|| null,
   });
   
  
@@ -63,16 +67,22 @@ export default  function Weight(){
  
  return(
    <div class Name="card">
-       <label >Set new goals</label>
-       <br></br>
-       <textarea rows="4" cols="50" value={goal} onChange={e=>setgoal(e.target.value)}></textarea>
-       
-       <button onClick={addnewWeight}>Add new weight</button>
+      <div className="card-wrapper">
+      <form className="form">
+      <label >Set new goals</label>
+      
+      <textarea rows="4" cols="50" value={goal} onChange={e=>setgoal(e.target.value)}></textarea>
+      
+      <button onClick={addnewWeight}>Add new Goal</button>
+      </form>
+      
+      </div>
+      
         {
           goals.map((g,idx)=>{
-            return( <div className="goal-card">
-                <h5>{g}</h5>
-                
+            return( <div className="note">
+                <h3>{g.goal}</h3>
+                <p>created on:{g.date}</p>
               <IconButton className="my-btn" data={g} onClick={removegoal} aria-label="delete"  size="large">
                  <DeleteIcon />
                  </IconButton>

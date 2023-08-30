@@ -24,17 +24,26 @@ function Doctor() {
     return (
       <div className="card">
         <p type="text" id="my-city" Style="display:none;">
-          {props.location}
+        {props.location}
         </p>
-        <h5>{props.name}</h5>
-        <p id="my-specialization" value={props.specialization}>
-          {props.specialization}
-        </p>
-        <p>{props.location}</p>
-       
-
+         <p id="my-specialization" value={props.specialization} style={{display:"none"}}>
+           {props.specialization}
+          </p>
+        <table>
+          <tr>
+          <p> <b>Name :</b> {props.name}</p>
+          </tr>
+          <tr>
+          <p value={props.specialization}>
+           <b>Specialisation: </b>{props.specialization}
+          </p>
+          </tr>
+          <tr>
+          <p><b>Location :</b> {props.location}</p>
+          </tr>
+        </table>
          <Link to={user && "/finddoctor/appoint"}>
-           <button onClick={() => handleAppointment(props.ids)}>
+           <button className="doctor-btn"  onClick={() => handleAppointment(props.ids)}>
            {user? "book a appointment":"Login to book appointemnt "}
           </button>
         </Link> 
@@ -91,10 +100,10 @@ function Doctor() {
   }
   return (
     <>
+      <h2 style={{textAlign:"center",marginBottom:"0px",marginTop:"2%"}}>Find Doctor's near you</h2>
       <form>
-        <label for="lang">specialization</label>
+        <label for="lang" className="sp">Specialization</label>
         <input type="text" onChange={handleSpec} />
-
         <select id="city">
           <option value="">select a city</option>
           <option value="kurnool">kurnool</option>
@@ -103,12 +112,11 @@ function Doctor() {
           <option value="mumbai">mumbai</option>
           <option value="chennai">chennai</option>
         </select>
-
         <button onClick={handleDoctor} type="submit">
           Search
         </button>
       </form>
-      <div style={{display:"flex"}}>
+      <div style={{justifyContent:"center",alignItems:"center",marginLeft:"100px"}} >
         {doctors.map((doc) => (
           <Card
             ids={doc}
