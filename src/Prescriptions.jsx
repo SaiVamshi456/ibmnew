@@ -8,44 +8,29 @@ import {
   getStorage,
   list,
 } from "firebase/storage";
+import { doc, updateDoc, arrayUnion,arrayRemove,getDoc  } from "firebase/firestore";
 import { useStateValue } from "./stateProvider";
 import { saveAs } from 'file-saver'
+import {db} from "./firebase.js";
 export default function User() {
-  const [imgUrl, setImgUrl] = useState(null);
+  const [imgUrl, setImgUrl] = useState();
   const [progresspercent, setProgresspercent] = useState(0);
   const [{ user }, dispatch] = useStateValue();
   const [files, setFiles] = useState([]);
-
+  const [comment,setComment]=useState();
   useEffect(() => {
-    const listRef = ref(storage, `${user.email}/`);
-
-    list(listRef)
-      .then((res) => {
-        res.items.forEach((itemRef) => {
-          // All the items under listRef.
-          getDownloadURL(ref(storage, itemRef))
-            .then((url) => {
-              setFiles((prev) => [...prev, url]);
-
-              // Or inserted into an <img> element
-            })
-            .catch((error) => {
-              // Handle any errors
-            });
-        });
-      })
-      .catch((error) => {
-        // Uh-oh, an error occurred!
-      });
-      let a=[];
-      console.log(files.length/2);
-      for(let i=0;i!==files.length/2;i++){
-        a.push(files[i]);
+    getDoc(doc(db, "users", user.email)).then(docSnap => {
+      if (docSnap.exists()) {
+        console.log("Document data:",);
+        console.log(docSnap.data());
+        const k=docSnap.data().pres;
+        
+          setFiles(k);
       }
-      console.log(a);
-      setFiles(a);
+      
+    })
    
-  }, []);
+  }, );
   function handleDownload(event) {
     event.preventDefault();
     saveAs( event.target.value,'image_url'); 
@@ -72,17 +57,30 @@ export default function User() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImgUrl(downloadURL);
+          const Ref = doc(db, "users", user.email);
+            const newup={
+              url:downloadURL,
+              date:new Date().toLocaleString(), 
+              comm:comment
+            }
+           updateDoc(Ref, {
+            pres: arrayUnion(newup)|| null,
+          
+          });
         });
       }
     );
   };
 
   return (
-    <div className="App">
+    <div >
     <h3>Manage your health records,you can upload  ur health records or can download them</h3>
       <form onSubmit={handleSubmit} className="form">
+      
         <input type="file" />
         <button type="submit">Upload</button>
+        <label>Add a comment</label>
+        <textarea value={comment}  onChange={e=>setComment(e.target.value)}  />
       </form>
       {!imgUrl && (
         <div className="outerbar">
@@ -95,9 +93,13 @@ export default function User() {
       {files.map((val) => {
         return (
           <div className="user-card">
-            <img src={val} className="user-img" alt="hcqKUH" />
+            <img src={val.url} className="user-img" alt="hcqKUH" />
+          
             <button value={val} onClick={handleDownload}>Download</button>
+            <p> updated on: {val.date}</p>
+            <p>{val.comm}</p>
           </div>
+          
         );
       })}
     </div>

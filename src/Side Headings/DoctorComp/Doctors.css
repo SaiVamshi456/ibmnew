@@ -34,14 +34,36 @@ input{
     border: 1px solid black;
 }
 .card{
-    font-size: 18px;
-    font-weight: 100;
-    border: 1px solid black;
-    margin: 20px;
-    padding: 10px;
-    width: 200px;
     align-items: center;
-    text-align: center;
+    font-size: 18px;
+    border: 1px solid black;
+    background: linear-gradient(-5deg,#A8DF8E,#72eb64);
+    margin: 20px 30px; 
+    padding: 10px;
+    width: fit-content;
+    border-radius: 30px;
+    box-sizing: border-box;
+    float: left;
+
+}
+.card table{
+    margin-left: 50px;
+    /* margin: auto 40px; */
+    width: 250px;
+
+}
+.doctor-btn{
+    color:white;
+    background-color:black;
+    border-radius:5px;
+}
+.card:hover{
+    /* border-color: blue; */
+    box-shadow: inset 1px 1px  gray; 
+    /* width: 400px; */
+    justify-content: center;
+    /* outline: 1px solid black; */
+    transform:scale(1.05);    
 }
 .card h3{
     font-weight: 100;
@@ -78,4 +100,8 @@ input{
 }
 .hide {
     display: none;
+}
+form{
+    padding-top: 30px;
+    padding-left: 22%;
 }

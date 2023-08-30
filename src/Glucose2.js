@@ -74,7 +74,7 @@ export default  function Glucose(){
 
  }
  return(
-   <div>
+   <div style={{width:"80%",justifyContent:"center",alignItems:"center",textAlign:"center",margin:"0px auto"}}>
        <label >Update your latest Glocose level</label>
        <input type="number" value={gluco1} onChange={handleWeight}/>
        <button onClick={addnewWeight}>Add new weight</button>

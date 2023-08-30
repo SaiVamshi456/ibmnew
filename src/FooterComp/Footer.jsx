@@ -14,7 +14,7 @@ export default function Footer(){
     },[])
 
     return (
-        <footer className="foot" data-aos="fade-down">
+        <footer className="foot">
             <div className="foot-top">
                 <div className="foot-left">
                     <div className="social-media">
@@ -55,7 +55,7 @@ export default function Footer(){
                 <div className="foot-right">
                     <div className="contact">
                         <CallRoundedIcon />
-                        <h4>Contact Us: +91 465264574</h4>
+                        <h4>+91 465264574</h4>
                     </div>
                 </div>
             </div>  

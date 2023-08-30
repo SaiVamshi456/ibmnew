@@ -1,11 +1,26 @@
+import Goals from "./Goals"
 import { useState } from 'react';
 import Login from './LoginComp/Login';
 import Main from './Body/Main';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import * as React from 'react';
+import Logout from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 import Footer from './FooterComp/Footer'
 import {onAuthStateChanged} from "firebase/auth";
 import { useStateValue } from "./stateProvider";
-// import Dropdown from 'react-bootstrap/Dropdown';
+import userDrop from "./userDrop";
+import BasicExample from "./BasicExample";
 import './App.css';
 import {auth} from "./firebase";
 import { useEffect } from "react";
@@ -19,10 +34,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Appointment from './Side Headings/DoctorComp/Appointment';
 import YourProfile from './YourProfile';
-import * as React from 'react';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import HealthMetrics from "./HealthMetrics";
 import Profile from "./Profile";
@@ -62,13 +74,21 @@ function App() {
     }
      
    }
+   const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
    function MenuPopupState() {
     return (
-      <PopupState variant="popover" popupId="demo-popup-menu">
+      <PopupState variant="popover" popupId="demo-popup-menu" >
         {(popupState) => (
           <React.Fragment>
-            <Button variant="contained" {...bindTrigger(popupState)}>
+            <Button style={{margin:"0px 30px"}} variant="contained" {...bindTrigger(popupState)}>
               Dashboard
             </Button>
             <Menu {...bindMenu(popupState)}>
@@ -80,43 +100,68 @@ function App() {
           </React.Fragment>
         )}
       </PopupState>
+      // <Menu
+      //   anchorEl={anchorEl}
+      //   id="account-menu"
+      //   open={open}
+      //   onClose={handleClose}
+      //   onClick={handleClose}
+      //   PaperProps={{
+      //     elevation: 0,
+      //     sx: {
+      //       overflow: 'visible',
+      //       filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+      //       mt: 1.5,
+      //       '& .MuiAvatar-root': {
+      //         width: 32,
+      //         height: 32,
+      //         ml: -0.5,
+      //         mr: 1,
+      //       },
+      //       '&:before': {
+      //         content: '""',
+      //         display: 'block',
+      //         position: 'absolute',
+      //         top: 0,
+      //         right: 14,
+      //         width: 10,
+      //         height: 10,
+      //         bgcolor: 'background.paper',
+      //         transform: 'translateY(-50%) rotate(45deg)',
+      //         zIndex: 0,
+      //       },
+      //     },
+      //   }}
+      //   transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+      //   anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      // >
+      //   <MenuItem onClick={handleClose}>
+      //     <Avatar /> Profile
+      //   </MenuItem>
+      //   <MenuItem onClick={handleClose}>
+      //     <Avatar /> My account
+      //   </MenuItem>
+      //   <Divider />
+      //   <MenuItem onClick={handleClose}>
+      //     <ListItemIcon>
+      //       <PersonAdd fontSize="small" />
+      //     </ListItemIcon>
+      //     Add another account
+      //   </MenuItem>
+      //   <MenuItem onClick={handleClose}>
+      //     <ListItemIcon>
+      //       <Settings fontSize="small" />
+      //     </ListItemIcon>
+      //     Settings
+      //   </MenuItem>
+      //   <MenuItem onClick={handleClose}>
+      //     <ListItemIcon>
+      //       <Logout fontSize="small" />
+      //     </ListItemIcon>
+      //     Logout
+      //   </MenuItem>
+      // </Menu>
     );
-  }
-
-
-
-  function handleHeads(event){
-    if(event.target.name==='menu' || event.target.name==='sideheading'){
-      setSideHead(true);
-    }
-    else if(event.target.name==='close'){
-      setSideHead(false);
-    }
-  }
-
-  function handleSideHeads(event){
-    setSideHead(!sideHead);
-  }
-
-
-  function Heads(){
-    return(
-        <PopupState variant="popover" popupId="demo-popup-menu">
-          {(popupState) => (
-            <React.Fragment>
-              <Button class="material-symbols-outlined" variant="contained" style={{margin:"10px",padding:"10px",fontSize:"40px",cursor:"pointer"}} {...bindTrigger(popupState)}>
-                X
-              </Button>
-              <Menu {...bindMenu(popupState)}>
-                <Link to={user && '/'}><MenuItem onClick={popupState.close} className='menu-item'>Home</MenuItem> </Link> 
-                <Link to={user && '/finddoctor'}><MenuItem onClick={popupState.close} className='menu-item'>Find Doctors</MenuItem></Link>
-                <Link to={user && '/treat'}><MenuItem onClick={popupState.close} className='menu-item'>Treatment</MenuItem></Link>
-                <Link to={user && '/medicine'}><MenuItem onClick={popupState.close} className='menu-item'>Medicine Suggestions</MenuItem></Link>
-              </Menu>
-            </React.Fragment>
-          )}
-        </PopupState>
-    )
   }
 
   function UserDetails(){
@@ -129,18 +174,18 @@ function App() {
 
   function Nav(){
     return (
-      <div style={{margin:"0",alignItems:"center",textAlign:"center",justifyContent:"space-between",display:"flex",height:"100px",position:"sticky",boxShadow:"1px 2px 10px grey"}}>
-        <Heads/>
-        {/* <Link to="/heads">
-          <button onClick={handleHeads} style={{justifyContent:"center",alignItems:"center"}} name="menu" class="material-symbols-outlined menu">
-            menu
-          </button>
-        </Link> */}
-        <div style={{alignItems:"center",justifyContent:"space-evenly",display:"flex",float:"right"}}>
+      <div className="nav-bar">
+        <div style={{float:"left",display:"flex",margin:"5px"}}>
+          <Link style={{textDecoration:"none"}} to="/">
+        <img style={{width:"75px",height:"75px"}} src="https://o.remove.bg/downloads/c5507884-bad1-4144-b65b-d032842486de/hospital-logo-design-vector-medical-cross_53876-136743-removebg-preview.png"/>
+        </Link>
+        <BasicExample/>
+        </div>
+        <div style={{alignItems:"center",justifyContent:"space-around",display:"flex",float:"right"}}>
           <h5 style={{margin:"0px 10px"}}>Hello {user?user.email:"guest"}</h5>          
-          <MenuPopupState style={{height:"20px"}} />
+          <MenuPopupState style={{height:"20px",margin:"0px 300px"}} />
           <Link to={!user && '/login'} >
-              <button style={{margin:"0px 20px",padding:"10px",backgroundColor:"transparent",border:"none",boxShadow:"1px 1px 10px blue",borderRadius:"10px"}} onClick={handleAuth}>{user ? <UserDetails/>:'signIn'}</button>
+              <button style={{margin:"0px 20px",padding:"10px",backgroundColor:"blue",color:"white",border:"none",boxShadow:"1px 1px 10px #AEE2FF"}} onClick={handleAuth}>{user ? <UserDetails/>:'signIn'}</button>
           </Link>
         </div>
       </div>
@@ -151,9 +196,8 @@ function App() {
     <div style={{margin:"0px"}}>
       <Router>
         <Routes>
-            <Route path="/" element ={[<Nav /> ,sideHead? <Heads/>:"", <Main />, <Footer />]}></Route>
+            <Route path="/" element ={[<Nav /> , <Main />, <Footer />]}></Route>
             <Route path="/login" element={[<Nav/>,<Login />]}></Route>
-            <Route path='/heads' element={[<Nav /> ,sideHead?<Heads/>:"",]}></Route>
             <Route path='/treat' element={[<Nav/>,<Treat/>]}></Route>
             <Route path="/finddoctor" element={[<Nav />,<Doctors />]}></Route>
             <Route path="/finddoctor/doctorpage" element={[<Nav />,<DoctorPage />]}></Route>
@@ -164,6 +208,7 @@ function App() {
             <Route path="/prescriptions" element={[<Nav />,<Prescriptions />]}> </Route>
             <Route path="/healthmetrics" element={[<Nav />,<HealthMetrics/>]}> </Route>
             <Route path="/profile" element={[<Nav />,<Profile />]}> </Route>
+            <Route path="/goals" element={[<Nav />,<Goals />]}> </Route>
         </Routes>
       </Router>
     </div>

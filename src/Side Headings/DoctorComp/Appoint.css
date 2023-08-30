@@ -3,7 +3,14 @@
     max-height: 15%;
     padding-top: 20px;
     padding-left: 15%;
+
     float: left;
+  }
+  .img1{
+    margin-top: 40px;
+    margin-right: 30px;
+    border-radius: 50%;
+    border: 5px solid black ;
   }
   .text {
     font-size: 20px;
@@ -17,7 +24,7 @@
   }
   .info {
     padding-top: 05px;
-    padding-left: 15%;
+    padding-left: 10%;
   }
   .sub {
     display: flex;
@@ -25,19 +32,19 @@
   .info1 {
     padding-top: 05px;
   }
-  th,
-  td {
+  th,td {
     padding-top: 10px;
     padding-bottom: 20px;
     padding-left: 50px;
     padding-right: 50px;
   }
   .book {
-    padding-left: 15%;
+    padding-left: 10%;
   }
   .btn {
     padding-top: 5px;
     display: flex;
+    
   }
   .slots{
     display: flex;
@@ -53,4 +60,25 @@
   }
   .bookings:hover{
     content: "Book slot";
+  }
+  .card-wrapper{
+    display:flex;
+    flex-direction:column;
+  }
+  .note-rev{
+    background-color:black;
+    position:relative;
+    width:50%;
+    margin-bottom: 1px;
+    color:white;
+    margin:2px auto;
+    padding:20px;
+    border-radius:8px;
+    /* display:flex; */
+  }
+  .th-user{
+  position: absolute;
+    right:15px;
+    bottom:-18px;
+    font-size:12px;
   }

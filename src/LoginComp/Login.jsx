@@ -64,12 +64,12 @@ export default function Register(){
     return (
       <form className="register" data-aos="fade-up" >
             <div className="details">
-                <label>Email : <p>{msg}</p> </label><br/>
-                <input type="text" value={email} onChange={e=>updateEmail(e.target.value)}/><br/>
+                <label><b>Email </b></label><br/>
+                <input placeholder="Enter your email Id" type="text" value={email} onChange={e=>updateEmail(e.target.value)}/><br/>
             </div>
             <div className="details">
-                <label>Password : </label><br/>
-                <input type="password" value={password} onChange={e=>updatePassword(e.target.value)}/><br/>
+                <label><b>Password </b></label><br/>
+                <input placeholder="Enter your password" type="password" value={password} onChange={e=>updatePassword(e.target.value)}/><br/>
             </div>
             {/* <Link to="/"> */}
             <button type="submit" onClick={signin}>Sign in</button>
@@ -79,4 +79,3 @@ export default function Register(){
        
     )
 }
-

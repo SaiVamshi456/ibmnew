@@ -1,5 +1,9 @@
-.body{
+body{
+  background: radial-gradient(#B799FF,#E6FFFD);
   margin: 0;
+}
+*{
+  font-family: 'Times New Roman', Times, serif;
 }
 /* button{
   border: 1px solid white;
@@ -113,14 +117,21 @@
   color: white;
   box-shadow: inset 1px 2px 10px rgb(105, 105, 182);
 }
-
+.nav-bar{
+  z-index: 2000;
+  background-color:#040D12;
+  /* background:linear-gradient(18deg,#E6FFFD,#AEE2FF,#ACBCFF,#B799FF); */
+  justify-content: space-between;
+  display:flex;
+  padding:20px;
+  color:whitesmoke;
+}
 .menu-item{
   text-decoration: none;
   padding:20px;
   background-color: white;
-  box-shadow: 1px 1px 10px grey;
   margin: 50px;
-
+  background-color: black;
 }
 Link{
   text-decoration: none;
