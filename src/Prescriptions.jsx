@@ -1,4 +1,4 @@
-import "./User.css";
+import "./records.css";
 import { useState, useEffect } from "react";
 import { storage } from "./firebase";
 import {
@@ -95,9 +95,9 @@ export default function User() {
           <div className="user-card">
             <img src={val.url} className="user-img" alt="hcqKUH" />
           
-            <button value={val} onClick={handleDownload}>Download</button>
+            <button value={val.url} onClick={handleDownload}>Download</button>
             <p> updated on: {val.date}</p>
-            <p>{val.comm}</p>
+            <p>comment : {val.comm}</p>
           </div>
           
         );

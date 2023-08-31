@@ -101,10 +101,10 @@ export default function HealthRecords() {
             <div className="user-card">
               <div className="container">
                 <img src={val.url} className="user-img" alt="photo" />
-                <button className="btn" value={val} onClick={handleDownload}>Download</button>
+                <button className="btn" value={val.url} onClick={handleDownload}>Download</button>
               </div>
               <h4> updated on: {val.date}</h4>
-              <h4>{val.comm}</h4> 
+              <h4>comment : {val.comm}</h4> 
             </div>
           );
         })}

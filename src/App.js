@@ -112,7 +112,7 @@ function App() {
             <img style={{width:"75px",height:"75px"}} src={logo}/>
           </Link>
           <Link to="/finddoctor" style={{textDecoration:"none", "&hover":{color:"blue"}}}>
-            <h2 className="nav-heading" style={{border:"1px solid none",textDecoration:"none",padding:"10px",marginTop:"2.5%",marginLeft:"5%",width:"200px",color:"white"}}>Find Doctors</h2>
+            <h3 className="nav-heading" style={{border:"1px solid none",textDecoration:"none",padding:"10px",marginTop:"2.5%",marginLeft:"5%",width:"200px",color:"white"}}>Find Doctors</h3>
           </Link>
         </div>
         <div style={{alignItems:"center",justifyContent:"space-around",display:"flex",float:"right"}}>
