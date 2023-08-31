@@ -5,9 +5,22 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import CallRoundedIcon from '@mui/icons-material/CallRounded';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import {useState} from "react";
 import { useEffect } from "react";
 
 export default function Footer(){
+
+    function Rand(){
+        let number="";
+        var i=0;
+        for(i=0;i<10;){
+            var a=Math.floor(Math.random*9);
+            number+=a;
+        }
+        setNum(number);
+    }
+
+    const [num,setNum] = useState(<Rand/>)
 
     useEffect(()=>{
         AOS.init({duration:2000});
@@ -17,10 +30,6 @@ export default function Footer(){
         <footer className="foot">
             <div className="foot-top">
                 <div className="foot-left">
-                    <div className="social-media">
-                        <a></a>
-                        <h3></h3>
-                    </div>
                     <div className="social-media">
                         <a href="" target="_blank">
                            <InstagramIcon sx={{
@@ -54,8 +63,12 @@ export default function Footer(){
                 </div>
                 <div className="foot-right">
                     <div className="contact">
-                        <CallRoundedIcon />
-                        <h4>+91 465264574</h4>
+                        <CallRoundedIcon style={{marginTop:"15px"}} />
+                        <div><p style={{marginBottom:"25px",
+                        marginTop:"-24px",
+                        paddingLeft:"38px",
+                        }}>{num}</p></div>
+                        
                     </div>
                 </div>
             </div>  

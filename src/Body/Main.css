@@ -18,6 +18,7 @@
 .boxes:hover{
   /* background-color:#A2678A; */
   background:radial-gradient(#AEC3AE,#0f5579);
+  transform: scale(1.08);
 }
 
 .boxes p{

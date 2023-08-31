@@ -1,9 +1,12 @@
+.main{
+  align-items:center;
+  justify-content: center;
+  margin: 0px 15%;
+}
 .image {
     max-width: 25%;
     max-height: 15%;
     padding-top: 20px;
-    padding-left: 15%;
-
     float: left;
   }
   .img1{
@@ -11,7 +14,11 @@
     margin-right: 30px;
     border-radius: 50%;
     border: 5px solid black ;
+    color:black;
   }
+.img2{
+  margin-top: -2%;
+}
   .text {
     font-size: 20px;
     padding-left: 20px;
@@ -24,13 +31,15 @@
   }
   .info {
     padding-top: 05px;
-    padding-left: 10%;
+   
   }
   .sub {
     display: flex;
   }
   .info1 {
     padding-top: 05px;
+
+    
   }
   th,td {
     padding-top: 10px;
@@ -38,9 +47,7 @@
     padding-left: 50px;
     padding-right: 50px;
   }
-  .book {
-    padding-left: 10%;
-  }
+  
   .btn {
     padding-top: 5px;
     display: flex;
@@ -51,19 +58,21 @@
   }
   .bookings{
     border: 1px solid darkgreen;
-    /* box-shadow: 0px 1px 3px 1px green; */
     background-color: green;
     color: white;
-    margin: 20px 40px;
-    padding: 10px 30px;
+    margin:20px 10px;
+    padding:20px;
+    border-radius:20px;
     cursor: pointer;
-  }
-  .bookings:hover{
-    content: "Book slot";
+    width:fit-content;
   }
   .card-wrapper{
     display:flex;
-    flex-direction:column;
+    width:80%;
+    margin:0px auto;
+    justify-content: space-between;
+    align-items:center;
+    margin-bottom: 100px;
   }
   .note-rev{
     background-color:black;
