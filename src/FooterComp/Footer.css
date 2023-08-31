@@ -8,6 +8,7 @@
     height: fit-content;
    overflow: auto;
    width: fit-screen;
+   margin: 0;
 }
 .foot-top{
     display: flex;
@@ -49,7 +50,7 @@
 
 }
 .social-media:hover{
-    background: linear-gradient(#405DE6,#5851DB,#833AB4,#C13584,#E1306C,#FD1D1D);
+    background-color: rgb(111, 223, 243);
 }
 .social-media:hover{
     border-radius: 50px;

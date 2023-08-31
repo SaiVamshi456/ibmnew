@@ -19,8 +19,6 @@ export default  function Glucose(){
     
    getDoc(doc(db, "users", user.email)).then(docSnap => {
      if (docSnap.exists()) {
-       console.log("Document data:",);
-       console.log(docSnap.data());
        const k=docSnap.data().glucose
        
          uglucose(k);
@@ -77,7 +75,7 @@ export default  function Glucose(){
    <div style={{width:"80%",justifyContent:"center",alignItems:"center",textAlign:"center",margin:"0px auto"}}>
        <label >Update your latest Glocose level</label>
        <input type="number" value={gluco1} onChange={handleWeight}/>
-       <button onClick={addnewWeight}>Add new weight</button>
+       <button onClick={addnewWeight}>update glucose level</button>
        <div className="graph">
        <Line 
        data={data}

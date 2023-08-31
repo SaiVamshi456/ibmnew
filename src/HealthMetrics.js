@@ -24,13 +24,11 @@ export default function HealthMetrics() {
             <Tab label="Blood Pressure" value="1" />
             <Tab label="Weight" value="2" />
             <Tab label="Glucose" value="3" />
-            <Tab label="Goals" value="4" />
           </TabList>
         </Box>
         <TabPanel value="1"><Bloodpres/></TabPanel>
         <TabPanel value="2"><Weight/></TabPanel>
         <TabPanel value="3"><Glucose /></TabPanel>
-        <TabPanel value="4"><Goals  /></TabPanel>
       </TabContext>
     </Box>
   );

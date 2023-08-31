@@ -1,8 +1,4 @@
-import logo from "../logo.png";
-import doctor from "./doctor.webp";
-import aid from "./firstaid.png";
-import docimage from "./doctor.png";
-import medicine from "./medicine.jfif";
+
 import find from "./finddoc.png";
 import goal from "./goal.png";
 import health from "./metric.png";
@@ -18,21 +14,19 @@ import Carasol from "./Carasol";
 export default  function Main(){
     const [{user},dispatch]=useStateValue();
     const userdata={
-        UserName:"",
         cistole:[],
         diastole:[],
         weight:[],
         glucose:[],
         glucoseDate:[],
         weightDate:[],
-        cystole:[],
-        diastole:[],
+        appoints:[],
         bloodpressureDate:[],
         goals:[],
         goalDate:[],
     }
     useEffect(()=>{
-        AOS.init({duration:3000});
+        AOS.init({duration:1000});
        if(user){
         getDoc(doc(db, "users",user.email)).then(docSnap => {
             if (docSnap.exists()) {
@@ -57,13 +51,16 @@ export default  function Main(){
 
     return (
         <div className="body-main">
-            <div className="poster" data-aos="fade-up">
-                <h1>Expertise ensures a proactive approach to your health<br/>
-                No fear when we are here
-                </h1>
-                <img className="doc-img" src={logo} />
+        <div class="image-container">
+            <img src="https://img.freepik.com/free-vector/clean-medical-background_53876-116875.jpg" alt="Image"/>
+            <div class="image-text">
+                <h1>Optimize well-being with personalized plans. <br/>
+                Track activities, set goals, and monitor progress.<br/>
+                Achieve a healthier lifestyle through our comprehensive health management platform.</h1>
+            </div>  
             </div>
-            <div style={{margin:"50px 0px",display:"flex",justifyContent:"space-around",alignItems:"center",textAlign:"center"}} data-aos="fade-down">
+        
+            <div style={{margin:"100px 0px",display:"flex",justifyContent:"space-around",alignItems:"center",textAlign:"center"}} data-aos="fade-down">
                 <Link style={{textDecoration:"none"}} to="/finddoctor">
                     <Box className="box" img={find} alter="Near Doctors" name="DOCTORS AROUND YOU" />
                 </Link>

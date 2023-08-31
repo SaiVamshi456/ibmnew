@@ -5,38 +5,6 @@ body{
 *{
   font-family: 'Times New Roman', Times, serif;
 }
-/* button{
-  border: 1px solid white;
-  box-shadow: 0px 1px 3px 1px grey;
-  margin: 20px 40px;
-  padding: 10px 30px;
-  background-color: whitesmoke;
-  cursor: pointer;
-} */
-/* .userbar{
-  display: flex;
-}
-.inner-nav{
-  display: flex;
-} */
-
-/* .nav{
-  margin: -5px -5px;
-  box-shadow: 0px 0px 4px 3px rgb(216, 226, 235);
-  height: 80px;
-  position:sticky;
-} */
-/* .sidenav{
-  width: fit-content;
-  z-index: 1;
-  position: fixed;
-  background-color: white;
-  top:0;
-  padding: 20px;
-  box-shadow: 0px 1px 5px 5px rgba(135, 178, 226, 0.897);
-  align-items: center;
-  text-align: center;
-} */
 .menu{
   border: 1px solid black;
   padding: 10px;
@@ -125,6 +93,9 @@ body{
   display:flex;
   padding:20px;
   color:whitesmoke;
+  /* position: fixed; */
+  top: 0;
+  width:100%;
 }
 .menu-item{
   text-decoration: none;
@@ -135,6 +106,9 @@ body{
 }
 Link{
   text-decoration: none;
+}
+.nav-heading:hover{
+  color: blue;
 }
 
 

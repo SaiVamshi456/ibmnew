@@ -90,7 +90,7 @@ export default function User() {
         </div>
       )}
 
-      {files.map((val) => {
+      {files?.map((val) => {
         return (
           <div className="user-card">
             <img src={val.url} className="user-img" alt="hcqKUH" />

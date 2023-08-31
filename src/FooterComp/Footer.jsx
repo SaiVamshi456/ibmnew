@@ -10,18 +10,6 @@ import { useEffect } from "react";
 
 export default function Footer(){
 
-    function Rand(){
-        let number="";
-        var i=0;
-        for(i=0;i<10;){
-            var a=Math.floor(Math.random*9);
-            number+=a;
-        }
-        setNum(number);
-    }
-
-    const [num,setNum] = useState(<Rand/>)
-
     useEffect(()=>{
         AOS.init({duration:2000});
     },[])
@@ -38,7 +26,7 @@ export default function Footer(){
                               "&:hover": { color: "blue"},
                         }}/>
                         </a>
-                        <h3>Instagram</h3>
+                        <h3 style={{color:"blue"}}>Instagram</h3>
                     </div>
                     <div className="social-media" >
                         <a href="" target="_blank">                    
@@ -48,7 +36,7 @@ export default function Footer(){
                                     "&:hover": { color: "blue"},
                             }}/>
                         </a>
-                        <h3>Twitter</h3>
+                        <h3 style={{color:"blue"}}>Twitter</h3>
                     </div>
                     <div className="social-media" >
                         <a href="" target="_blank">                    
@@ -58,7 +46,7 @@ export default function Footer(){
                                     "&:hover": { color: "blue"},
                             }}/>
                         </a>
-                        <h3>Facebook</h3>
+                        <h3 style={{color:"blue"}}>Facebook</h3>
                     </div>
                 </div>
                 <div className="foot-right">
@@ -67,7 +55,7 @@ export default function Footer(){
                         <div><p style={{marginBottom:"25px",
                         marginTop:"-24px",
                         paddingLeft:"38px",
-                        }}>{num}</p></div>
+                        }}>+91 974983634</p></div>
                         
                     </div>
                 </div>

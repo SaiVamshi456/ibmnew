@@ -38,6 +38,7 @@
 .details input{
     margin-top: 10px;
     margin-left: 0px;
+    width: 100%;
 }
 input[type=text] {
     border-radius: 10px;

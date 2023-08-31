@@ -1,94 +1,62 @@
 .user {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 86vh;
-    margin-top: 10px;
-  }
-  .user-left {
-    float: left;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 1px 2px 15px grey;
-    width: 250px;
-    margin-right: 100px;
-  }
-  .user-right {
-    float: right;
-  }
-  .profile {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    border: 1px solid black;
-    width: 100%;
-    padding: 30px;
-  }
-  .user-left button {
-    padding: 20px;
-  }
-  .user-img {
-    width: 400px;
-    height: 400px;
-    object-fit: contain;
-  }
-  .user-card {
-    display: flex;
-    flex-direction: row-reverse;
-    border: 1px solid black;
-    align-items:center;
-    justify-content: center;
-    position: relative;
-    width: fit-content;
-    cursor: pointer;
-  }
-  .user-card button{
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    background-color: black;
-    color: white;
-    border-radius: 50px;
-    opacity: 65%;
-  }
-  .user-card button{
-    display: none;
-  }
-  .user-card:hover img{
-    opacity: 75%;
-  }
-  .user-card:hover button{
-    display: inline;
-  }
-  .user-card button{
-    position: absolute;
-  }
-  .graph{
-    height:400px;
-    background-color: antiquewhite;
-  }
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 86vh;
+  margin-top: 10px;
+}
+.user-left {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 2px 15px grey;
+  width: 250px;
+  margin-right: 100px;
+}
+.user-right {
+  float: right;
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  border: 1px solid black;
+  width: 100%;
+  padding: 30px;
+}
+.user-left button {
+  padding: 20px;
+}
+
+.graph{
+  height:400px;
+  background-color: antiquewhite;
+}
+
+.MuiTabs-scroller{
+  margin-top: 5px;
+}
+.goal-card{
+  border:1px solid black;
+  width:100%;
+  height:fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.my-btn{
+  width: 20px;
+  height:20px;
  
-  .MuiTabs-scroller{
-    margin-top: 5px;
-  }
-  .goal-card{
-    border:1px solid black;
-    width:100%;
-    height:fit-content;
-    display: flex;
-    flex-direction: column;
-  }
-  .my-btn{
-    width: 20px;
-    height:20px;
-   
-  }
-  .my-btn:hover{
-    background-color: black;
-    color:white;
-  }
+}
+.my-btn:hover{
+  background-color: black;
+  color:white;
+}
+input {
+  margin-left: 0px;
+}

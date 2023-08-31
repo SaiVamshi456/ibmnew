@@ -102,8 +102,8 @@ function Doctor() {
     <>
       <h2 style={{textAlign:"center",marginBottom:"0px",marginTop:"2%"}}>Find Doctor's near you</h2>
       <form>
-        <label for="lang" className="sp">Specialization</label>
-        <input type="text" onChange={handleSpec} />
+        <label for="lang" className="sp"><h2>Specialization : </h2></label>
+        <input style={{marginLeft:"1%"}} type="text" onChange={handleSpec} placeholder="example: dentist"/>
         <select id="city">
           <option value="">select a city</option>
           <option value="kurnool">kurnool</option>

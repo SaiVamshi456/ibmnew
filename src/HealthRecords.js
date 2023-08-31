@@ -1,4 +1,4 @@
-import "./User.css"
+import "./records.css"
 import { useState, useEffect } from "react";
 import { storage } from "./firebase";
 import {
@@ -19,8 +19,10 @@ export default function HealthRecords() {
   const [files, setFiles] = useState([]);
   const [comment,setComment]=useState();
 
-  useEffect(() => {
-    getDoc(doc(db, "users", user.email)).then(docSnap => {
+  useEffect(() => 
+  {
+    getDoc(doc(db, "users", user.email)).then(docSnap => 
+      {
       if (docSnap.exists()) {
         console.log("Document data:",);
         console.log(docSnap.data());
@@ -36,7 +38,8 @@ export default function HealthRecords() {
     event.preventDefault();
     saveAs( event.target.value,'image_url'); 
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => 
+  {
     e.preventDefault();
     const file = e.target[0]?.files[0];
 
@@ -74,13 +77,15 @@ export default function HealthRecords() {
   };
 
   return (
-    <div  >
-    <h3>Manage your health records,you can upload  ur health records or can download them</h3>
-      <form onSubmit={handleSubmit} className="form">
+    <div  style={{height:"50vh",background:"linear-gradient(18deg,#E6FFFD,#AEE2FF,#ACBCFF,#B799FF)"}}>
+      <h3 style={{textAlign:"center",fontSize:"40px",
+                  marginTop:"5%",
+                  marginBottom:"5%"}}><b>Manage your health records, you can upload  your health records or can download them.</b></h3>
+                  <form style={{backgroundColor:"white",color:"blue"}}onSubmit={handleSubmit} className="form">
         <input type="file" />
         
         <label>Add a comment</label>
-        <textarea value={comment}  onChange={e=>setComment(e.target.value)}  />
+        <textarea style={{marginBottom:"4%"}}value={comment}  onChange={e=>setComment(e.target.value)}  />
         <button type="submit">Upload</button>
       </form>
       {!imgUrl && (
@@ -90,17 +95,20 @@ export default function HealthRecords() {
           </div>
         </div>
       )}
-
-      {files.map((val) => {
-        return (
-          <div className="user-card">
-            <img src={val.url} className="user-img" alt="hcqKUH" />
-            <button value={val} onClick={handleDownload}>Download</button>
-            <p> updated on: {val.date}</p>
-            <p>{val.comm}</p>
-          </div>
-        );
-      })}
+      <div style={{width:"400px",height:"200px",margin:"20px"}}>
+        {files?.map((val) => {
+          return (
+            <div className="user-card">
+              <div className="container">
+                <img src={val.url} className="user-img" alt="photo" />
+                <button className="btn" value={val} onClick={handleDownload}>Download</button>
+              </div>
+              <h4> updated on: {val.date}</h4>
+              <h4>{val.comm}</h4> 
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

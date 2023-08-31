@@ -1,5 +1,5 @@
 import Carousel from 'react-bootstrap/Carousel';
-import image from "./doctor.avif";
+import image from "./cara.png";
 
 function DarkVariantExample() {
   return (
@@ -9,7 +9,7 @@ function DarkVariantExample() {
           borderRadius="20px"
           className="d-block w-100"
           src={image}
-          height="450px"
+          height="500px"
           alt="First slide"
         />
         <Carousel.Caption style={{justifyContent:"center",marginBottom:"13%"}} >
@@ -22,7 +22,7 @@ function DarkVariantExample() {
           borderRadius="20px"
           className="d-block w-100"
           src={image}
-          height="450px"
+          height="500px"
           alt="Second slide"
         />
         <Carousel.Caption style={{justifyContent:"center",marginBottom:"13%"}}>
@@ -35,7 +35,7 @@ function DarkVariantExample() {
           borderRadius="20px"
           className="d-block w-100"
           src={image}
-          height="450px"
+          height="500px"
           alt="Third slide"
         />
         <Carousel.Caption style={{justifyContent:"center",marginBottom:"10%"}}>

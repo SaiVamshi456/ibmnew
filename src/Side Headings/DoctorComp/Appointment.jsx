@@ -134,12 +134,24 @@ export default function Appointment(){
                 await emailjs.send(serviceId, templateId, {
                   name: user.email,
                   doctorName:doctor.name,
-
+                  to_name:user.email,
                   t1:slotTime,
-                  t2:(slotTime+1),
+                  t2:(Number(slotTime)+1),
                   day:tomorrow.toDateString(),
                  recipient: user.email
              });
+             const Ref = doc(db, "users", user.email);
+             const appoint={
+                doctor:doctor.name,
+                t1:slotTime,
+                t2:(Number(slotTime)+1),
+                day:tomorrow.toDateString(),
+                location:doctor.location,
+                specialization:doctor.specialization
+             }
+             updateDoc(Ref, {
+               appoints: arrayUnion(appoint)|| null,
+            });
              alert("slot booked sucessfully");
            } catch (error) {
              console.log(error);

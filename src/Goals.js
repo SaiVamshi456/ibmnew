@@ -28,39 +28,41 @@ export default  function Weight(){
        
          ugoals(k);
        
-       uwdate(docSnap.data().goalsDate);
+       uwdate(docSnap.data().goalDate);
       
      
      }
      
    })
-   const mydate=new Date();
-   udate(mydate.toLocaleString());
  });
  
 
  function addnewWeight(event){
   event.preventDefault();
    const Ref = doc(db, "users", user.email);
-    const newgoal={
-      goal:goal,
-      date:new Date().toLocaleString(),
-    }
+    
    updateDoc(Ref, {
-     goals: arrayUnion(newgoal)|| null,
+     goals: arrayUnion(goal)|| null,
   });
   
+  updateDoc(Ref, {
+    goalDate: arrayUnion(new Date().toLocaleString(),)|| null,
+ });
  
 
  }
  
  function removegoal(event){
     
-    var datax = event.currentTarget.getAttribute('data');
+    var data1 = event.currentTarget.getAttribute('data1');
+    var data2 = event.currentTarget.getAttribute('data2');
     const Ref = doc(db, "users", user.email);
     updateDoc(Ref, {
-        goals: arrayRemove(datax),
+        goals: arrayRemove(data1),
     });
+    updateDoc(Ref, {
+      goalDate: arrayRemove(data2),
+  });
     alert("reomved the goal");
 
  }
@@ -73,17 +75,17 @@ export default  function Weight(){
       
       <textarea rows="4" cols="50" value={goal} onChange={e=>setgoal(e.target.value)}></textarea>
       
-      <button onClick={addnewWeight}>Add new Goal</button>
+      <button onClick={addnewWeight}>+</button>
       </form>
       
       </div>
       
         {
-          goals.map((g,idx)=>{
+          goals?.map((g,idx)=>{
             return( <div className="note">
-                <h3>{g.goal}</h3>
-                <p>created on:{g.date}</p>
-              <IconButton className="my-btn" data={g} onClick={removegoal} aria-label="delete"  size="large">
+                <h3>{g}</h3>
+                <p>created on:{wdate[idx]}</p>
+              <IconButton className="my-btn" data1={g} onClick={removegoal} aria-label="delete"  size="large">
                  <DeleteIcon />
                  </IconButton>
             </div>)
