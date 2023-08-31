@@ -1,6 +1,10 @@
+import send from "./send.png";
+import tick from "./tick.png";
 import { useState } from "react";
 import { useEffect } from "react";
+import profilelogo from "./profile.png";
 import list from "./doctorList";
+import star from "./star.png";
 import { useStateValue } from "../../stateProvider";
 import "./Appoint.css";
 import { collection, doc, getDoc, setDoc, updateDoc,arrayUnion} from "firebase/firestore"; 
@@ -11,7 +15,6 @@ export default function Appointment(){
     const [startTime, setStart] = useState(doctor.startTime);
     const [endTime, setEnd] = useState(doctor.endTime);
     const [slot, setSlot] = useState([]);
-    const [titles,setTitles] = useState("Slot Avaliable");
     const [loading, setLoading] = useState(false);
     const [datab,udatab]=useState([]);
     const [review,setreview]=useState("");
@@ -109,7 +112,6 @@ export default function Appointment(){
             event.currentTarget.style.backgroundColor="red";
             event.currentTarget.style.boxShadow="red";
             event.currentTarget.style.border= "1px solid darkred";
-            setTitles("No Slot Avaliable");
             const DocRef = doc(db, "doctors",doctor.id);
             await updateDoc(DocRef, {
               
@@ -150,7 +152,6 @@ export default function Appointment(){
             event.currentTarget.style.backgroundColor="green";
             event.currentTarget.style.boxShadow="green";
             event.currentTarget.style.border="1px solid darkgreen";
-            setTitles("Slot Avaliable");
         }
     };
     function addnewreview(event){
@@ -169,30 +170,33 @@ export default function Appointment(){
             <div class="conatiner">
                 <div class="sub">
                     <div class="image">
-                        <img
-                        src="https://static.vecteezy.com/system/resources/thumbnails/005/724/584/small_2x/professional-doctor-with-stethoscope-line-icon-female-physicians-specialist-and-assistant-linear-pictogram-isolated-illustration-vector.jpg"
+                        <img class="img1"
+                        src={profilelogo}
                         width="100"
-                        height="100"
-                        />
+                        height="100"/>
                     </div>
                     <div class="text">
-                        <p>
-                        <b>{doctor.name}</b>
+                        <p><b>Name</b>: 
+                        {doctor.name}
                         </p>
-                        <p>MBBS</p>
-                        <p>{doctor.specialization}</p>
-                        <p>{doctor.expe} years Experience </p>
-                        <p>Medical Registration Verified</p>
+                        <p><b>Qualification : </b> MBBS</p>
+                        <p><b>Specialization : </b> {doctor.specialization}</p>
+                        <p><b>Experience : </b> {doctor.expe} years</p>
+                        <p><b>Rating : </b> {doctor.rating} <img className="img2" src={star}
+                            width={30} height={29}
+                        /></p>
+                        <p>Medical Registration Verified  <img className="img2" src={tick}
+                         width={30} height={28}/></p>
                     </div>
                 </div>
             </div>
             <div class="info">
-                <h3>ABOUT</h3>
-                <p>
+                <h3>ABOUT : </h3>
+                <p style={{fontSize:"20px"}}>
                 {doctor.about}
                 </p>
             </div>
-            <div class="info1">
+            <div class="info1" style={{fontSize:"20px"}}>
                 <center>
                 <table>
                     <tr>
@@ -211,18 +215,15 @@ export default function Appointment(){
                 </center>
             </div>
             <div class="book">
-                HealthConnect: Streamlined Doctors Appointment and Health Record
-                Management
-                <h2>Book Your Slot for :   <p>{tomorrow.toDateString()}</p> </h2>
+                <h3>Book Your Slot for : </h3>  <p style={{fontSize:"20px"}}>{tomorrow.toDateString()}</p> 
             </div>
             <div class="btn">
                 {slot.length > 0 ? (
-                    
                 slot.map((ele, idx) => {   
                     if(datab[idx]===0){
                         return (
                             <div  className="slots"  key={idx}>
-                                <button style ={{backgroundColor:"green"}} title={titles} time={ele} data={idx} className="bookings" onClick={handleSlots}>
+                                <button style ={{backgroundColor:"green"}} time={ele} data={idx} className="bookings" onClick={handleSlots}>
                                     {ele} - {ele + 1}
                                 </button>
                             </div>
@@ -231,7 +232,7 @@ export default function Appointment(){
                     else{
                         return (
                             <div  className="slots"  key={idx}>
-                                <button style={{backgroundColor: "red"}} title={titles} value={idx} className="bookings"  >
+                                <button style={{backgroundColor: "red"}} value={idx} className="bookings"  >
                                     {ele} - {ele + 1}
                                 </button>
                             </div>
@@ -244,11 +245,9 @@ export default function Appointment(){
                 
             </div>
             <div className="card-wrapper">
-                    <form>
-                        <label >Write a review</label>
-                        <input rows="4" cols="50" style={{width:"60%",borderRadius:"20px"}} placeholder="Write Your Review" value={review} onChange={e=>setreview(e.target.value)}/>
-                        <button onClick={addnewreview}>submit</button>
-                    </form>
+                    <label style={{fontSize:"25px"}}><em>Write a review</em></label>
+                    <input rows="4" cols="50" style={{width:"60%",borderRadius:"20px"}} placeholder="Write Your Review" value={review} onChange={e=>setreview(e.target.value)}/>
+                    <button style={{height:"70px",width:"70px",borderRadius:"50%"}} onClick={addnewreview}><img src={send} style={{width:"45px",height:"45px"}}/></button>
                 </div>
                 {
                 reviews.map((g,idx)=>{

@@ -1,4 +1,5 @@
 import Goals from "./Goals"
+import logo from "./logo.png";
 import { useState } from 'react';
 import Login from './LoginComp/Login';
 import Main from './Body/Main';
@@ -89,7 +90,7 @@ function App() {
         {(popupState) => (
           <React.Fragment>
             <Button style={{margin:"0px 30px"}} variant="contained" {...bindTrigger(popupState)}>
-              Dashboard
+              {user?user.email:"guest"}
             </Button>
             <Menu {...bindMenu(popupState)}>
                <Link to={user && '/profile'}><MenuItem onClick={popupState.close} className='menu-item'>Profile</MenuItem> </Link> 
@@ -177,12 +178,12 @@ function App() {
       <div className="nav-bar">
         <div style={{float:"left",display:"flex",margin:"5px"}}>
           <Link style={{textDecoration:"none"}} to="/">
-        <img style={{width:"75px",height:"75px"}} src="https://o.remove.bg/downloads/c5507884-bad1-4144-b65b-d032842486de/hospital-logo-design-vector-medical-cross_53876-136743-removebg-preview.png"/>
-        </Link>
-        <BasicExample/>
+            <img style={{width:"75px",height:"75px"}} src={logo}/>
+          </Link>
+          <BasicExample/>
         </div>
         <div style={{alignItems:"center",justifyContent:"space-around",display:"flex",float:"right"}}>
-          <h5 style={{margin:"0px 10px"}}>Hello {user?user.email:"guest"}</h5>          
+          {/* <h5 style={{margin:"0px 10px"}}>Hello {user?user.email:"guest"}</h5>           */}
           <MenuPopupState style={{height:"20px",margin:"0px 300px"}} />
           <Link to={!user && '/login'} >
               <button style={{margin:"0px 20px",padding:"10px",backgroundColor:"blue",color:"white",border:"none",boxShadow:"1px 1px 10px #AEE2FF"}} onClick={handleAuth}>{user ? <UserDetails/>:'signIn'}</button>
@@ -197,16 +198,14 @@ function App() {
       <Router>
         <Routes>
             <Route path="/" element ={[<Nav /> , <Main />, <Footer />]}></Route>
-            <Route path="/login" element={[<Nav/>,<Login />]}></Route>
-            <Route path='/treat' element={[<Nav/>,<Treat/>]}></Route>
-            <Route path="/finddoctor" element={[<Nav />,<Doctors />]}></Route>
-            <Route path="/finddoctor/doctorpage" element={[<Nav />,<DoctorPage />]}></Route>
-            <Route path="/finddoctor/appoint" element={[<Nav/>,<Appointment/>]} ></Route>
-            <Route path='/medicine' element={[<Nav/>,<Medicine/>]}></Route>
-            <Route path='/appoint' element={[<Nav/>]} > </Route>
-            <Route path="/healthrecords" element={[<Nav />,<HealthRecords />]}> </Route>
-            <Route path="/prescriptions" element={[<Nav />,<Prescriptions />]}> </Route>
-            <Route path="/healthmetrics" element={[<Nav />,<HealthMetrics/>]}> </Route>
+            <Route path="/login" element={[<Login />]}></Route>
+            <Route path="/finddoctor" element={[<Nav />,<Doctors />, <Footer />]}></Route>
+            <Route path="/finddoctor/doctorpage" element={[<Nav />,<DoctorPage />, <Footer />]}></Route>
+            <Route path="/finddoctor/appoint" element={[<Nav/>,<Appointment/>, <Footer />]} ></Route>
+            <Route path='/appoint' element={[<Nav/>, <Footer />]} > </Route>
+            <Route path="/healthrecords" element={[<Nav />,<HealthRecords />, <Footer />]}> </Route>
+            <Route path="/prescriptions" element={[<Nav />,<Prescriptions />, <Footer />]}> </Route>
+            <Route path="/healthmetrics" element={[<Nav />,<HealthMetrics/>, <Footer />]}> </Route>
             <Route path="/profile" element={[<Nav />,<Profile />]}> </Route>
             <Route path="/goals" element={[<Nav />,<Goals />]}> </Route>
         </Routes>
